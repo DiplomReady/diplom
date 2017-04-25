@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/level" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/normal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/normal" />
+
+            <RadioButton
+                android:id="@+id/hight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/hight" />
+
+            <RadioButton
+                android:id="@+id/expert"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/expert" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/show_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_timer" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Операция:" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/plus"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="+" />
+
+            <RadioButton
+                android:id="@+id/minus"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="-" />
+
+            <RadioButton
+                android:id="@+id/increase"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="*" />
+
+            <RadioButton
+                android:id="@+id/division"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="/" />
+
+            <RadioButton
+                android:id="@+id/sqr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Возведение в квадрат" />
+
+            <RadioButton
+                android:id="@+id/sqrt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Извлечение квадратного корня" />
+
+            <RadioButton
+                android:id="@+id/random"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Случайно" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Скорость:" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/x1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="10 секунд" />
+
+            <RadioButton
+                android:id="@+id/x2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="20 секунд" />
+
+            <RadioButton
+                android:id="@+id/x3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="30 секунд" />
+        </RadioGroup>
+
+    </LinearLayout>
+</ScrollView>

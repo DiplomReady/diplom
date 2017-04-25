@@ -1,8 +1,15 @@
 <resources>
-    <string name="app_name">diplom</string>
+    <string name="app_name">Verbal score</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="exercises">Тренировки</string>
+    <string name="learning">Изучение</string>
+    <string name="normal">Обычный</string>
+    <string name="hight">Высокий</string>
+    <string name="expert">Эксперт</string>
+    <string name="level">Уровень сложности:</string>
+    <string name="show_timer">Показывать секундомер</string>
 </resources>

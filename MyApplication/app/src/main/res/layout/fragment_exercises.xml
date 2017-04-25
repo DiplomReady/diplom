@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/quality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Качество: "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/precentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/quality"
+        android:text=" %"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignStart="@+id/quality"
+        android:layout_below="@+id/quality"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/ic_pozitive"
+        android:id="@+id/imageView" />
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_negative"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignEnd="@+id/precentage" />
+    <TextView
+        android:id="@+id/pozitive_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/imageView"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="18dp" />
+
+    <TextView
+        android:id="@+id/negative_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBaseline="@+id/pozitive_value"
+        android:layout_alignBottom="@+id/pozitive_value"
+        android:layout_toStartOf="@+id/precentage" />
+
+    <TextView
+        android:id="@+id/first_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" %"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="78dp"
+        android:layout_below="@+id/pozitive_value"
+        android:layout_toStartOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/operation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" %"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignTop="@+id/first_value"
+        android:layout_alignStart="@+id/pozitive_value" />
+
+    <TextView
+        android:id="@+id/second_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" %"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBaseline="@+id/operation"
+        android:layout_alignBottom="@+id/operation"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/summa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" = "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBaseline="@+id/second_value"
+        android:layout_alignBottom="@+id/second_value"
+        android:layout_alignStart="@+id/negative_value" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" %"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBaseline="@+id/summa"
+        android:layout_alignBottom="@+id/summa"
+        android:layout_toEndOf="@+id/summa" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Старт"
+        android:layout_below="@+id/operation"
+        android:layout_toStartOf="@+id/result"
+        android:layout_marginTop="15dp"
+        android:id="@+id/start_btn" />
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" %"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/start_btn"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
