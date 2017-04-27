@@ -24,41 +24,44 @@ public class SettingFragment extends Fragment {
                 false);
 
         RadioButton normalLevel = (RadioButton) rootView.findViewById(R.id.normal);
-        normalLevel.setChecked(true);
+        final SettingsManager settingsManager = SettingsManager.getInstance();
         normalLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentLevel(Level.LEVEL_NORMAL);
+                settingsManager.setCurrentLevel(Level.LEVEL_NORMAL);
             }
         });
         RadioButton hightLevel = (RadioButton) rootView.findViewById(R.id.hight);
         hightLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentLevel(Level.LEVEL_HIGHT);
+                settingsManager.setCurrentLevel(Level.LEVEL_HIGHT);
             }
         });
         RadioButton expertLevel = (RadioButton) rootView.findViewById(R.id.expert);
         expertLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentLevel(Level.LEVEL_EXPERT);
+                settingsManager.setCurrentLevel(Level.LEVEL_EXPERT);
             }
         });
+
         CheckBox showTimer = (CheckBox) rootView.findViewById(R.id.show_timer);
+        if (settingsManager.isShowTimer()) {
+            showTimer.setChecked(true);
+        }
         showTimer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                SettingsManager.getInstance().setShowTimer(b);
+                settingsManager.setShowTimer(b);
             }
         });
 
         RadioButton operationPlus = (RadioButton) rootView.findViewById(R.id.plus);
-        operationPlus.setChecked(true);
         operationPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentOperation(Operation.OPERATION_PLUS);
+                settingsManager.setCurrentOperation(Operation.OPERATION_PLUS);
             }
         });
 
@@ -66,7 +69,7 @@ public class SettingFragment extends Fragment {
         operationMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentOperation(Operation.OPERATION_MINUS);
+                settingsManager.setCurrentOperation(Operation.OPERATION_MINUS);
             }
         });
 
@@ -74,7 +77,7 @@ public class SettingFragment extends Fragment {
         operationIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentOperation(Operation.OPERATION_INCREASE);
+                settingsManager.setCurrentOperation(Operation.OPERATION_INCREASE);
             }
         });
 
@@ -82,7 +85,7 @@ public class SettingFragment extends Fragment {
         operationDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentOperation(Operation.OPERATION_DIVISION);
+                settingsManager.setCurrentOperation(Operation.OPERATION_DIVISION);
             }
         });
 
@@ -90,7 +93,7 @@ public class SettingFragment extends Fragment {
         operationSqr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentOperation(Operation.OPERATION_SQR);
+                settingsManager.setCurrentOperation(Operation.OPERATION_SQR);
             }
         });
 
@@ -98,7 +101,7 @@ public class SettingFragment extends Fragment {
         operationSqrt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentOperation(Operation.OPERATION_SQRT);
+                settingsManager.setCurrentOperation(Operation.OPERATION_SQRT);
             }
         });
 
@@ -106,16 +109,15 @@ public class SettingFragment extends Fragment {
         operationRandom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentOperation(Operation.OPERATION_RANDOM);
+                settingsManager.setCurrentOperation(Operation.OPERATION_RANDOM);
             }
         });
 
         RadioButton speedX1 = (RadioButton) rootView.findViewById(R.id.x1);
-        speedX1.setChecked(true);
         speedX1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentSpeed(10);
+                settingsManager.setCurrentSpeed(10);
             }
         });
 
@@ -123,7 +125,7 @@ public class SettingFragment extends Fragment {
         speedX2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentSpeed(20);
+                settingsManager.setCurrentSpeed(20);
             }
         });
 
@@ -131,9 +133,58 @@ public class SettingFragment extends Fragment {
         speedX3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SettingsManager.getInstance().setCurrentSpeed(30);
+                settingsManager.setCurrentSpeed(30);
             }
         });
+
+        if (settingsManager.getCurrentSpeed() == 10) {
+            speedX1.setChecked(true);
+        } else if (settingsManager.getCurrentSpeed() == 20) {
+            speedX2.setChecked(true);
+        } else if (settingsManager.getCurrentSpeed() == 30) {
+            speedX3.setChecked(true);
+        }
+
+        int currentOperation = settingsManager.getCurrentOperation();
+        switch (currentOperation) {
+
+            case Operation.OPERATION_DIVISION:
+                operationDiv.setChecked(true);
+                break;
+            case Operation.OPERATION_INCREASE:
+                operationIncrease.setChecked(true);
+                break;
+            case Operation.OPERATION_MINUS:
+                operationMinus.setChecked(true);
+                break;
+            case Operation.OPERATION_PLUS:
+                operationPlus.setChecked(true);
+                break;
+            case Operation.OPERATION_RANDOM:
+                operationRandom.setChecked(true);
+                break;
+            case Operation.OPERATION_SQRT:
+                operationSqrt.setChecked(true);
+                break;
+            case Operation.OPERATION_SQR:
+                operationSqr.setChecked(true);
+                break;
+        }
+
+        int currentLevel = settingsManager.getCurrentLevel();
+        switch (currentLevel) {
+
+            case Level.LEVEL_EXPERT:
+                expertLevel.setChecked(true);
+                break;
+            case Level.LEVEL_HIGHT:
+                hightLevel.setChecked(true);
+                break;
+            case Level.LEVEL_NORMAL:
+                normalLevel.setChecked(true);
+                break;
+        }
+
         return rootView;
     }
 

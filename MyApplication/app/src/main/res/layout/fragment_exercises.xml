@@ -6,6 +6,7 @@
 
     <TextView
         android:id="@+id/quality"
+        android:layout_marginTop="64dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -17,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
         android:layout_toRightOf="@id/quality"
         android:text=" %"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -35,12 +37,15 @@
         android:layout_height="48dp"
         android:src="@drawable/ic_negative"
         android:layout_alignTop="@+id/imageView"
-        android:layout_alignEnd="@+id/precentage" />
+        android:layout_alignEnd="@+id/precentage"
+        android:id="@+id/imageView2" />
     <TextView
         android:id="@+id/pozitive_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
+        android:textSize="32sp"
+        android:textColor="@android:color/holo_green_dark"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_below="@+id/imageView"
         android:layout_alignStart="@+id/imageView"
@@ -52,6 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
+        android:textSize="32sp"
+        android:textColor="@android:color/holo_red_dark"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignBaseline="@+id/pozitive_value"
         android:layout_alignBottom="@+id/pozitive_value"
@@ -62,8 +69,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" %"
+        android:textSize="32sp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="32dp"
         android:layout_below="@+id/pozitive_value"
         android:layout_toStartOf="@+id/imageView" />
 
@@ -72,35 +80,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" %"
+        android:textSize="32sp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_alignTop="@+id/first_value"
-        android:layout_alignStart="@+id/pozitive_value" />
+        android:layout_toRightOf="@+id/first_value"
+        android:layout_marginLeft="12dp"
+        android:layout_alignTop="@+id/first_value" />
 
     <TextView
         android:id="@+id/second_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" %"
+        android:textSize="32sp"
+        android:layout_toRightOf="@+id/operation"
+        android:layout_marginLeft="12dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_alignBaseline="@+id/operation"
-        android:layout_alignBottom="@+id/operation"
-        android:layout_toEndOf="@+id/imageView" />
+        android:layout_alignBottom="@+id/operation" />
 
     <TextView
         android:id="@+id/summa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" = "
+        android:textSize="32sp"
+        android:layout_toRightOf="@+id/second_value"
+        android:layout_marginLeft="12dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignBaseline="@+id/second_value"
-        android:layout_alignBottom="@+id/second_value"
-        android:layout_alignStart="@+id/negative_value" />
+        android:layout_alignBottom="@+id/second_value" />
 
-    <TextView
+    <EditText
         android:id="@+id/result"
-        android:layout_width="wrap_content"
+        android:layout_width="72dp"
         android:layout_height="wrap_content"
-        android:text=" %"
+        android:textSize="24sp"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:layout_toRightOf="@+id/summa"
+        android:layout_marginLeft="12dp"
+        android:gravity="left"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignBaseline="@+id/summa"
         android:layout_alignBottom="@+id/summa"
@@ -110,10 +128,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Старт"
-        android:layout_below="@+id/operation"
-        android:layout_toStartOf="@+id/result"
-        android:layout_marginTop="15dp"
-        android:id="@+id/start_btn" />
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/start_btn"
+        android:layout_below="@+id/result" />
 
     <TextView
         android:id="@+id/timer"
@@ -122,6 +140,7 @@
         android:text=" %"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginTop="16dp"
+        android:textSize="32sp"
         android:layout_below="@+id/start_btn"
         android:layout_centerHorizontal="true" />
 

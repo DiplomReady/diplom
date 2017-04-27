@@ -9,7 +9,7 @@ public class SettingsManager {
     private @Operation int currentOperation = Operation.OPERATION_PLUS;
 
     private int currentSpeed = 10;
-    private boolean isShowTimer;
+    private boolean isShowTimer = true;
 
     public static SettingsManager getInstance() {
         if (instance == null) {
