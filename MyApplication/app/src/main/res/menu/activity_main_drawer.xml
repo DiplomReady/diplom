@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_exercises"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_menu_send"
             android:title="@string/exercises" />
         <item
             android:id="@+id/nav_learning"
@@ -12,7 +12,7 @@
             android:title="@string/learning" />
         <item
             android:id="@+id/nav_table"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_menu_share"
             android:title="Таблица умножения" />
         <item
             android:id="@+id/nav_manage"

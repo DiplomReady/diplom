@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="12dp">
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background"
+        android:alpha="0.5"/>
 
     <TextView
         android:id="@+id/quality"
-        android:layout_marginTop="64dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
         android:text="Качество: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -20,128 +26,128 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
         android:layout_toRightOf="@id/quality"
-        android:text=" %"
+        android:text="-"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_alignStart="@+id/quality"
         android:layout_below="@+id/quality"
         android:layout_marginTop="14dp"
-        android:src="@drawable/ic_pozitive"
-        android:id="@+id/imageView" />
+        android:src="@drawable/ic_pozitive" />
 
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/ic_negative"
-        android:layout_alignTop="@+id/imageView"
         android:layout_alignEnd="@+id/precentage"
-        android:id="@+id/imageView2" />
+        android:layout_alignTop="@+id/imageView"
+        android:src="@drawable/ic_negative" />
+
     <TextView
         android:id="@+id/pozitive_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="32sp"
-        android:textColor="@android:color/holo_green_dark"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_below="@+id/imageView"
         android:layout_alignStart="@+id/imageView"
+        android:layout_below="@+id/imageView"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="18dp" />
+        android:layout_marginTop="18dp"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="32sp" />
 
     <TextView
         android:id="@+id/negative_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="32sp"
-        android:textColor="@android:color/holo_red_dark"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignBaseline="@+id/pozitive_value"
         android:layout_alignBottom="@+id/pozitive_value"
-        android:layout_toStartOf="@+id/precentage" />
+        android:layout_toStartOf="@+id/precentage"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="32sp" />
 
     <TextView
         android:id="@+id/first_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" %"
-        android:textSize="32sp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginTop="32dp"
         android:layout_below="@+id/pozitive_value"
-        android:layout_toStartOf="@+id/imageView" />
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="32dp"
+        android:text="--"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="32sp" />
 
     <TextView
         android:id="@+id/operation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" %"
-        android:textSize="32sp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_toRightOf="@+id/first_value"
+        android:layout_alignTop="@+id/first_value"
         android:layout_marginLeft="12dp"
-        android:layout_alignTop="@+id/first_value" />
+        android:layout_toRightOf="@+id/first_value"
+        android:text="-"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="32sp" />
 
     <TextView
         android:id="@+id/second_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" %"
-        android:textSize="32sp"
-        android:layout_toRightOf="@+id/operation"
+        android:layout_alignBottom="@+id/operation"
         android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@+id/operation"
+        android:text="--"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_alignBottom="@+id/operation" />
+        android:textSize="32sp" />
 
     <TextView
         android:id="@+id/summa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" = "
-        android:textSize="32sp"
-        android:layout_toRightOf="@+id/second_value"
-        android:layout_marginLeft="12dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignBaseline="@+id/second_value"
-        android:layout_alignBottom="@+id/second_value" />
+        android:layout_alignBottom="@+id/second_value"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@+id/second_value"
+        android:text=" = "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="32sp" />
 
     <EditText
         android:id="@+id/result"
-        android:layout_width="72dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:inputType="number"
-        android:imeOptions="actionDone"
-        android:layout_toRightOf="@+id/summa"
-        android:layout_marginLeft="12dp"
-        android:gravity="left"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignBaseline="@+id/summa"
         android:layout_alignBottom="@+id/summa"
-        android:layout_toEndOf="@+id/summa" />
+        android:layout_marginLeft="12dp"
+        android:layout_toEndOf="@+id/summa"
+        android:layout_toRightOf="@+id/summa"
+        android:gravity="left"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="28sp" />
 
     <Button
+        android:id="@+id/start_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Старт"
-        android:layout_marginTop="12dp"
+        android:layout_below="@+id/result"
         android:layout_centerHorizontal="true"
-        android:id="@+id/start_btn"
-        android:layout_below="@+id/result" />
+        android:layout_marginTop="12dp"
+        android:text="Старт" />
 
     <TextView
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" %"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginTop="16dp"
-        android:textSize="32sp"
-        android:layout_below="@+id/start_btn"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginLeft="16dp"
+        android:text=" - "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="32sp" />
 
 </RelativeLayout>

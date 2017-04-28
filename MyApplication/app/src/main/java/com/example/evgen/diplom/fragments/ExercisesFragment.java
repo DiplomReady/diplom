@@ -1,6 +1,7 @@
 package com.example.evgen.diplom.fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -67,25 +69,53 @@ public class ExercisesFragment extends Fragment {
 
         final TextView positiveValue = (TextView) rootView.findViewById(R.id.pozitive_value);
         final TextView negativeValue = (TextView) rootView.findViewById(R.id.negative_value);
+        final TextView precentage = (TextView) rootView.findViewById(R.id.precentage);
 
+        final EditText resultEdit = (EditText) rootView.findViewById(R.id.result);
         final CountDownTimer countDownTimer = new CountDownTimer(SettingsManager.getInstance().getCurrentSpeed() * 1000 + 100, 1000) {
             @Override
             public void onTick(long milliss) {
-                timerText.setText("" + (int) milliss / 1000);
+                if (SettingsManager.getInstance().isShowTimer()) {
+                    timerText.setText("" + (int) milliss / 1000);
+                } else {
+                    timerText.setText("");
+                }
             }
 
             @Override
             public void onFinish() {
+                resultEdit.setText("");
                 negativeValue.setText(String.valueOf(Integer.valueOf(negativeValue.getText().toString()) + 1));
+                double positInt = Double.valueOf(positiveValue.getText().toString());
+                double negatInt = Double.valueOf(negativeValue.getText().toString());
+                if (positInt == 0) {
+                    precentage.setText("" + "0");
+                } else if (negatInt == 0d) {
+                    precentage.setText("" + "100");
+                } else if (positInt > negatInt) {
+                    precentage.setText("" + ((int)(100 - negatInt/positInt * 100)));
+                } else if (positInt == negatInt) {
+                    precentage.setText("" + "50");
+                } else {
+                    precentage.setText("" + ((int)(positInt/negatInt * 100)));
+                }
                 timerText.setText("");
             }
         };
+        final int finalCurrentOperation = currentOperation;
+
+
 
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 countDownTimer.cancel();
+                resultEdit.setText("");
+                resultEdit.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(resultEdit, InputMethodManager.SHOW_IMPLICIT);
                 startBtn.setText("Следующий");
+
                 int randomValue = 10;
                 int currentLevel = SettingsManager.getInstance().getCurrentLevel();
                 switch (currentLevel) {
@@ -101,26 +131,36 @@ public class ExercisesFragment extends Fragment {
                 }
 
                 Random random = new Random();
-                firstText.setText(String.valueOf(random.nextInt(randomValue)));
-                secondText.setText(String.valueOf(random.nextInt(randomValue)));
-
-                if (SettingsManager.getInstance().isShowTimer()) {
-                    countDownTimer.start();
+                int firstrandomValue = random.nextInt(randomValue);
+                firstText.setText(String.valueOf(firstrandomValue));
+                if (finalCurrentOperation == Operation.OPERATION_SQR || finalCurrentOperation == Operation.OPERATION_SQRT) {
+                    if (finalCurrentOperation == Operation.OPERATION_SQRT) {
+                        firstrandomValue = ((int) Math.sqrt(firstrandomValue));
+                        firstrandomValue = firstrandomValue * firstrandomValue;
+                        firstText.setText(String.valueOf(firstrandomValue));
+                    }
+                    secondText.setText("");
+                } else {
+                    secondText.setText(String.valueOf(random.nextInt(randomValue)));
                 }
+
+
+                    countDownTimer.start();
             }
         });
 
-        final EditText resultEdit = (EditText) rootView.findViewById(R.id.result);
-        final int finalCurrentOperation = currentOperation;
         resultEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                 if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                if (actionId == EditorInfo.IME_ACTION_SEARCH ||
                         actionId == EditorInfo.IME_ACTION_DONE ||
                         event.getAction() == KeyEvent.ACTION_DOWN &&
                                 event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                     int firstValue = Integer.valueOf(firstText.getText().toString());
-                    int secondValue = Integer.valueOf(secondText.getText().toString());
+                    int secondValue = 0;
+                    if (!TextUtils.isEmpty(secondText.getText().toString())) {
+                        secondValue = Integer.valueOf(secondText.getText().toString());
+                    }
                     int result = -2;
                     if (!TextUtils.isEmpty(resultEdit.getText().toString())) {
                         result = Integer.valueOf(resultEdit.getText().toString());
@@ -146,7 +186,7 @@ public class ExercisesFragment extends Fragment {
                             correctResult = (int) Math.sqrt(firstValue);
                             break;
                         case Operation.OPERATION_SQR:
-                            correctResult = firstValue * secondValue;
+                            correctResult = firstValue * firstValue;
                             break;
                     }
 
@@ -155,12 +195,24 @@ public class ExercisesFragment extends Fragment {
                     } else {
                         negativeValue.setText(String.valueOf(Integer.valueOf(negativeValue.getText().toString()) + 1));
                     }
+                    double positInt = Double.valueOf(positiveValue.getText().toString());
+                    double negatInt = Double.valueOf(negativeValue.getText().toString());
+                    if (positInt == 0) {
+                        precentage.setText("" + "0");
+                    } else if (negatInt == 0d) {
+                        precentage.setText("" + "100");
+                    } else if (positInt > negatInt) {
+                        precentage.setText("" + ((int)(100 - negatInt/positInt * 100)));
+                    } else if (positInt == negatInt) {
+                        precentage.setText("" + "50");
+                    } else {
+                        precentage.setText("" + ((int)(positInt/negatInt * 100)));
+                    }
                     countDownTimer.cancel();
                 }
                 return false;
             }
         });
-
 
         return rootView;
     }
