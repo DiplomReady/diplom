@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.evgen.diplom.Level;
@@ -39,6 +40,7 @@ public class ExercisesFragment extends Fragment {
         final TextView secondText = (TextView) rootView.findViewById(R.id.second_value);
 
         final TextView operation = (TextView) rootView.findViewById(R.id.operation);
+        final ImageView firstValueImage = (ImageView) rootView.findViewById(R.id.first_value_image);
 
         int currentOperation = SettingsManager.getInstance().getCurrentOperation();
         if (currentOperation == Operation.OPERATION_RANDOM) {
@@ -60,7 +62,7 @@ public class ExercisesFragment extends Fragment {
                 operation.setText("+");
                 break;
             case Operation.OPERATION_SQRT:
-                operation.setText("^1/2");
+                operation.setText("");
                 break;
             case Operation.OPERATION_SQR:
                 operation.setText("^2");
@@ -109,43 +111,7 @@ public class ExercisesFragment extends Fragment {
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                countDownTimer.cancel();
-                resultEdit.setText("");
-                resultEdit.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(resultEdit, InputMethodManager.SHOW_IMPLICIT);
-                startBtn.setText("Следующий");
-
-                int randomValue = 10;
-                int currentLevel = SettingsManager.getInstance().getCurrentLevel();
-                switch (currentLevel) {
-                    case Level.LEVEL_EXPERT:
-                        randomValue = 1000;
-                        break;
-                    case Level.LEVEL_HIGHT:
-                        randomValue = 100;
-                        break;
-                    case Level.LEVEL_NORMAL:
-                        randomValue = 10;
-                        break;
-                }
-
-                Random random = new Random();
-                int firstrandomValue = random.nextInt(randomValue);
-                firstText.setText(String.valueOf(firstrandomValue));
-                if (finalCurrentOperation == Operation.OPERATION_SQR || finalCurrentOperation == Operation.OPERATION_SQRT) {
-                    if (finalCurrentOperation == Operation.OPERATION_SQRT) {
-                        firstrandomValue = ((int) Math.sqrt(firstrandomValue));
-                        firstrandomValue = firstrandomValue * firstrandomValue;
-                        firstText.setText(String.valueOf(firstrandomValue));
-                    }
-                    secondText.setText("");
-                } else {
-                    secondText.setText(String.valueOf(random.nextInt(randomValue)));
-                }
-
-
-                    countDownTimer.start();
+                goNext(countDownTimer, resultEdit, startBtn, firstText, finalCurrentOperation, firstValueImage, secondText);
             }
         });
 
@@ -209,11 +175,58 @@ public class ExercisesFragment extends Fragment {
                         precentage.setText("" + ((int)(positInt/negatInt * 100)));
                     }
                     countDownTimer.cancel();
+                    goNext(countDownTimer, resultEdit, startBtn, firstText, finalCurrentOperation, firstValueImage, secondText);
+                    return true;
                 }
                 return false;
             }
         });
 
         return rootView;
+    }
+
+    private void goNext(CountDownTimer countDownTimer, EditText resultEdit, Button startBtn, TextView firstText, int finalCurrentOperation, ImageView firstValueImage, TextView secondText) {
+        countDownTimer.cancel();
+        resultEdit.setText("");
+        resultEdit.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(resultEdit, InputMethodManager.SHOW_IMPLICIT);
+        startBtn.setText("Следующий");
+
+        int randomValue = 10;
+        int currentLevel = SettingsManager.getInstance().getCurrentLevel();
+        switch (currentLevel) {
+            case Level.LEVEL_EXPERT:
+                randomValue = 1000;
+                break;
+            case Level.LEVEL_HIGHT:
+                randomValue = 100;
+                break;
+            case Level.LEVEL_NORMAL:
+                randomValue = 10;
+                break;
+        }
+
+        Random random = new Random();
+        int firstrandomValue = random.nextInt(randomValue);
+        firstText.setText(String.valueOf(firstrandomValue));
+        int secondRandomValue = random.nextInt(randomValue);
+        if (finalCurrentOperation == Operation.OPERATION_SQR || finalCurrentOperation == Operation.OPERATION_SQRT) {
+            if (finalCurrentOperation == Operation.OPERATION_SQRT) {
+                firstrandomValue = ((int) Math.sqrt(firstrandomValue));
+                firstrandomValue = firstrandomValue * firstrandomValue;
+                firstValueImage.setVisibility(View.VISIBLE);
+                firstText.setText(String.valueOf(firstrandomValue));
+            } else {
+                firstValueImage.setVisibility(View.GONE);
+            }
+            secondText.setText("");
+        } else {
+            if(finalCurrentOperation == Operation.OPERATION_MINUS && firstrandomValue < secondRandomValue) {
+                secondRandomValue = firstrandomValue;
+            }
+            secondText.setText(String.valueOf(secondRandomValue));
+        }
+        countDownTimer.start();
     }
 }

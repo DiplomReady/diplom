@@ -71,6 +71,18 @@
         android:textColor="@android:color/holo_red_dark"
         android:textSize="32sp" />
 
+    <ImageView
+        android:id="@+id/first_value_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/pozitive_value"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/sqrt"
+        android:visibility="gone"
+        android:scaleType="fitXY"/>
+
+
     <TextView
         android:id="@+id/first_value"
         android:layout_width="wrap_content"
