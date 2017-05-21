@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="48dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginBottom="6dp"
+        android:textSize="24sp"
+        android:gravity="center"/>
+    <CheckBox
+        android:id="@+id/choice_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:checked="true"
+        android:button="@drawable/checkbox_selector" />
+
+    <CheckBox
+        android:id="@+id/choice_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:checked="true"
+        android:button="@drawable/checkbox_selector" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/colorPrimaryDark"/>
+
+    <CheckBox
+        android:id="@+id/choice_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:padding="6dp"
+        android:button="@drawable/checkbox_selector" />
+
+    <CheckBox
+        android:id="@+id/choice_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:checked="true"
+        android:button="@drawable/checkbox_selector" />
+
+    <CheckBox
+        android:id="@+id/choice_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:checked="true"
+        android:button="@drawable/checkbox_selector" />
+
+    <CheckBox
+        android:id="@+id/choice_6"
+        android:layout_width="wrap_content"
+        android:checked="true"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:button="@drawable/checkbox_selector" />
+
+    <CheckBox
+        android:id="@+id/choice_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:padding="6dp"
+        android:button="@drawable/checkbox_selector" />
+
+</LinearLayout>
